@@ -48,6 +48,22 @@ float FractalNoise::noise(float fx, float fy)
     return tb;
 }
 
+float FractalNoise::multiOctaveNoise(float fx, float fy, int octaves, float persistence)
+{
+    float amplitude = 1;
+    float max = 0;
+    float result = 0;
+
+    while (octaves -- > 0) {
+        max += amplitude;
+        result += noise(fx, fy) * amplitude;
+                amplitude *= persistence;
+                fx *= 2;
+                fy *= 2;
+    }
+    return result/max;
+}
+
 float FractalNoise::lerp(float a, float b, float t)
 {
     return a + (b - a) * t;

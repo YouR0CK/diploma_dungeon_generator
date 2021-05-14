@@ -9,6 +9,7 @@ public:
     FractalNoise();
 
     float noise(float fx, float fy);
+    float multiOctaveNoise(float fx, float fy, int octaves, float persistence = 0.5f);
 
 private:
     /**
