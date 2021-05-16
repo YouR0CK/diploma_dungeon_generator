@@ -2,14 +2,17 @@
 #define FRACTALNOISE_H
 
 #include <QByteArray>
+#include <QObject>
 
-class FractalNoise
+class FractalNoise : public QObject
 {
+    Q_OBJECT
+
 public:
     FractalNoise();
 
-    float noise(float fx, float fy);
-    float multiOctaveNoise(float fx, float fy, int octaves, float persistence = 0.5f);
+    Q_INVOKABLE float noise(float fx, float fy);
+    Q_INVOKABLE float multiOctaveNoise(float fx, float fy, int octaves, float persistence = 0.5f);
 
 private:
     /**

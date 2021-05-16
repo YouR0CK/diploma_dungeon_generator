@@ -1,4 +1,4 @@
-QT       += core gui
+QT += core qml quick datavisualization
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -11,18 +11,20 @@ CONFIG += c++11
 SOURCES += \
     basicentity.cpp \
     fractalnoise.cpp \
-    main.cpp \
-    mainwindow.cpp
+    main.cpp
 
 HEADERS += \
     basicentity.h \
-    fractalnoise.h \
-    mainwindow.h
+    fractalnoise.h
 
-FORMS += \
-    mainwindow.ui
+FORMS +=
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    diploma_dung_gen.qrc
+
+OTHER_FILES += qml/*
