@@ -11,6 +11,14 @@ class FractalNoise : public QObject
 public:
     FractalNoise();
 
+    /**
+     * @brief generatePermutationTable
+     * @param seed
+     * this method should be called befor using noise to provide
+     * gradient table
+     */
+    void generatePermutationTable(int seed = 1);
+
     Q_INVOKABLE float noise(float fx, float fy);
     Q_INVOKABLE float multiOctaveNoise(float fx, float fy, int octaves, float persistence = 0.5f);
 
@@ -45,7 +53,7 @@ private:
     float* getPseudoRandomGradientVector(int x, int y);     //add z coord later
     float dot(float a[], float b[]);
 
-    QByteArray m_baPermutationTable;
+    uint m_permutationTable[1024];
 };
 
 #endif // FRACTALNOISE_H

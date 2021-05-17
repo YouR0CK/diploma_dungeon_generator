@@ -3,11 +3,12 @@
 
 #include <QRandomGenerator>
 
-FractalNoise::FractalNoise()
+FractalNoise::FractalNoise() {}
+
+void FractalNoise::generatePermutationTable(int seed)
 {
-    QRandomGenerator gen(1488);
-    m_baPermutationTable.resize(1024);
-    gen.fillRange(reinterpret_cast<uint *>(m_baPermutationTable.data()), m_baPermutationTable.size());
+    QRandomGenerator gen(seed);
+    gen.fillRange(m_permutationTable, 1024);
 }
 
 float FractalNoise::noise(float fx, float fy)
@@ -88,7 +89,7 @@ float *FractalNoise::getPseudoRandomGradientVector(int x, int y)
 {
     int v = static_cast<int>(((((x * 1055910892) ^ (y * 1556193525)) + 7782501394) & 1023));
 
-    v = m_baPermutationTable[v] & 3;
+    v = m_permutationTable[v] & 3;
 
     switch (v) {
     case 0:
