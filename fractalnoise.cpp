@@ -9,6 +9,12 @@ void FractalNoise::generatePermutationTable(int seed)
 {
     QRandomGenerator gen(seed);
     gen.fillRange(m_permutationTable, 1024);
+    m_interpolation = Interpolation::QUINTIC;
+}
+
+void FractalNoise::setInterpolationFunc(Interpolation interpolation)
+{
+    m_interpolation = interpolation;
 }
 
 float FractalNoise::noise(float fx, float fy)
@@ -38,8 +44,20 @@ float FractalNoise::noise(float fx, float fy)
     float bx2 = dot(distanceToBottomRight, bottomRightGradient);
 
     //preparing interpolation parameters to make it unlinear
-    pointInQuadX = quintic(pointInQuadX);
-    pointInQuadX = quintic(pointInQuadY);
+    switch (m_interpolation) {
+    case Interpolation::QUINTIC:
+        pointInQuadX = quintic(pointInQuadX);
+        pointInQuadY = quintic(pointInQuadY);
+        break;
+    case Interpolation::COSINE:
+        pointInQuadX = cosine(pointInQuadX);
+        pointInQuadY = cosine(pointInQuadY);
+        break;
+     case Interpolation::CUBIC:
+        pointInQuadX = cubic(pointInQuadX);
+        pointInQuadY = cubic(pointInQuadY);
+        break;
+    }
 
     //innterpolation
     float tx = lerp(tx1, tx2, pointInQuadX);

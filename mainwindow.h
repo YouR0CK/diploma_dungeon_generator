@@ -27,11 +27,20 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_pushButton_pressed();
+
+    void on_setOctavesBtn_clicked();
+
+    void on_comboBox_activated(const QString &arg1);
+
 private:
     void fillSqr();
     void setSeed();
 
     FractalNoise m_fNoise;
+
+    int m_octavesCount;
 
     Ui::MainWindow *ui;
     QGraphicsScene *m_scene;

@@ -11,6 +11,12 @@ class FractalNoise : public QObject
 public:
     FractalNoise();
 
+    enum class Interpolation {
+        QUINTIC,
+        COSINE,
+        CUBIC
+    };
+
     /**
      * @brief generatePermutationTable
      * @param seed
@@ -18,6 +24,8 @@ public:
      * gradient table
      */
     void generatePermutationTable(int seed = 1);
+
+    void setInterpolationFunc(Interpolation interpolation);
 
     Q_INVOKABLE float noise(float fx, float fy);
     Q_INVOKABLE float multiOctaveNoise(float fx, float fy, int octaves, float persistence = 0.5f);
@@ -52,6 +60,8 @@ private:
     float cubic(float t);
     float* getPseudoRandomGradientVector(int x, int y);     //add z coord later
     float dot(float a[], float b[]);
+
+    Interpolation m_interpolation;
 
     uint m_permutationTable[1024];
 };

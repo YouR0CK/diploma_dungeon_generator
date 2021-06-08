@@ -50,6 +50,44 @@
      <string>Set seed</string>
     </property>
    </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>100</y>
+      <width>151</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>Quintic</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Cosine</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Cubic</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QPushButton" name="setOctavesBtn">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>70</y>
+      <width>151</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Set octaves count</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
