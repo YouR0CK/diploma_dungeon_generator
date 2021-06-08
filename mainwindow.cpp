@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_scene = new QGraphicsScene(0, 0, 618, 578, this);
     ui->graphicsView->setScene(m_scene);
     m_scene->addRect(m_scene->sceneRect());
-    this->setWindowTitle("Dungeon generator");
+    this->setWindowTitle("Abstract location generator");
     this->setFixedSize(800, 600);
     connect(ui->magicBtn, &QPushButton::clicked, this, &MainWindow::fillSqr);    
 
