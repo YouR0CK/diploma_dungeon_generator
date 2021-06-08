@@ -34,9 +34,12 @@ private slots:
 
     void on_squarePxSize_valueChanged(int arg1);
 
+    void on_seedVal_valueChanged(int arg1);
+
+    void on_squarePxSize_3_valueChanged(int arg1);
+
 private:
     void fillSqr();
-    void setSeed();
 
     FractalNoise m_fNoise;
 

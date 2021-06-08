@@ -9,7 +9,7 @@ void FractalNoise::generatePermutationTable(int seed)
 {
     QRandomGenerator gen(seed);
     gen.fillRange(m_permutationTable, 1024);
-    m_interpolation = Interpolation::QUINTIC;
+    m_interpolation = Interpolation::LINEAR;
 }
 
 void FractalNoise::setInterpolationFunc(Interpolation interpolation)

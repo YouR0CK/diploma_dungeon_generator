@@ -15,12 +15,14 @@ MainWindow::MainWindow(QWidget *parent)
     m_scene->addRect(m_scene->sceneRect());
     this->setWindowTitle("Dungeon generator");
     this->setFixedSize(800, 600);
-    connect(ui->magicBtn, &QPushButton::clicked, this, &MainWindow::fillSqr);
-    connect(ui->setSeedBtn, &QPushButton::clicked, this, &MainWindow::setSeed);
+    connect(ui->magicBtn, &QPushButton::clicked, this, &MainWindow::fillSqr);    
+
+    ui->seedVal->setValue(1);
+    ui->squarePxSize->setValue(5);
+    ui->octavesCnt->setValue(1);
 
     m_sqrSize = 5;
     m_octavesCount = 1;
-    setSeed();
 }
 
 MainWindow::~MainWindow()
@@ -39,9 +41,9 @@ void MainWindow::fillSqr()
             QGraphicsRectItem *wallRect = new QGraphicsRectItem(sqrX, sqrY, m_sqrSize, m_sqrSize);
             float wallInd = 0.0f;
             if (m_octavesCount > 1) {
-                wallInd = m_fNoise.multiOctaveNoise(static_cast<float>(sqrX) * 0.01f/* + 2.5f*/, static_cast<float>(sqrY) * 0.01f/*+ 2.5f*/, m_octavesCount);
+                wallInd = m_fNoise.multiOctaveNoise(static_cast<float>(sqrX) * 0.01f, static_cast<float>(sqrY) * 0.01f, m_octavesCount);
             } else {
-                wallInd = m_fNoise.noise(static_cast<float>(sqrX) * 0.01f/* + 2.5f*/, static_cast<float>(sqrY) * 0.01f/* + 2.5f*/);
+                wallInd = m_fNoise.noise(static_cast<float>(sqrX) * 0.01f, static_cast<float>(sqrY) * 0.01f);
             }
 
             qDebug() << wallInd;
@@ -50,6 +52,18 @@ void MainWindow::fillSqr()
                 QColor rectColor(QColorConstants::Black);
                 wallRect->setBrush(rectColor);
             }
+
+//            if (wallInd <= 0.05f) {
+//                QColor rectColor(QColorConstants::Green);
+//                wallRect->setBrush(rectColor);
+//            } else if (0.05f < wallInd <= 0.25f) {
+//                QColor rectColor(QColorConstants::DarkBlue);
+//                wallRect->setBrush(rectColor);
+//            } else if (0.25f < wallInd <= 0.75f) {
+//                QColor rectColor(QColorConstants::Magenta);
+//                wallRect->setBrush(rectColor);
+//            }
+
 
             m_scene->addItem(wallRect);
 
@@ -61,12 +75,6 @@ void MainWindow::fillSqr()
     }
 
     qApp->processEvents();
-}
-
-void MainWindow::setSeed()
-{
-    m_fNoise.generatePermutationTable(QInputDialog::getInt(this, tr("Set initial data"),tr("Input random seed value")));
-
 }
 
 void MainWindow::on_setOctavesBtn_clicked()
@@ -92,5 +100,17 @@ void MainWindow::on_comboBox_activated(const QString &arg1)
 void MainWindow::on_squarePxSize_valueChanged(int arg1)
 {
     m_sqrSize = arg1;
+}
+
+
+void MainWindow::on_seedVal_valueChanged(int arg1)
+{
+    m_fNoise.generatePermutationTable(arg1);
+}
+
+
+void MainWindow::on_squarePxSize_3_valueChanged(int arg1)
+{
+    m_octavesCount = arg1;
 }
 
