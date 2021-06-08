@@ -28,15 +28,13 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_setOctavesBtn_clicked();
-
     void on_comboBox_activated(const QString &arg1);
 
     void on_squarePxSize_valueChanged(int arg1);
 
     void on_seedVal_valueChanged(int arg1);
 
-    void on_squarePxSize_3_valueChanged(int arg1);
+    void on_octavesCnt_valueChanged(int arg1);
 
 private:
     void fillSqr();

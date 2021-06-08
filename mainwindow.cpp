@@ -51,6 +51,9 @@ void MainWindow::fillSqr()
             if (wallInd >= 0 /*<= -0.15f*/) {
                 QColor rectColor(QColorConstants::Black);
                 wallRect->setBrush(rectColor);
+            } else {
+                QColor rectColor(QColorConstants::White);
+                wallRect->setBrush(rectColor);
             }
 
 //            if (wallInd <= 0.05f) {
@@ -76,12 +79,6 @@ void MainWindow::fillSqr()
 
     qApp->processEvents();
 }
-
-void MainWindow::on_setOctavesBtn_clicked()
-{
-    m_octavesCount = QInputDialog::getInt(this, tr("Set octaves count"),tr("Input octaves count"));
-}
-
 
 void MainWindow::on_comboBox_activated(const QString &arg1)
 {
@@ -109,8 +106,8 @@ void MainWindow::on_seedVal_valueChanged(int arg1)
 }
 
 
-void MainWindow::on_squarePxSize_3_valueChanged(int arg1)
+void MainWindow::on_octavesCnt_valueChanged(int arg1)
 {
-    m_octavesCount = arg1;
+   m_octavesCount = arg1;
 }
 
