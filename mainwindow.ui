@@ -74,6 +74,11 @@
       <string>Cubic</string>
      </property>
     </item>
+    <item>
+     <property name="text">
+      <string>Linear</string>
+     </property>
+    </item>
    </widget>
    <widget class="QPushButton" name="setOctavesBtn">
     <property name="geometry">
@@ -86,6 +91,29 @@
     </property>
     <property name="text">
      <string>Set octaves count</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="squarePxSize">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>130</y>
+      <width>42</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>130</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Square px size</string>
     </property>
    </widget>
   </widget>

@@ -14,7 +14,8 @@ public:
     enum class Interpolation {
         QUINTIC,
         COSINE,
-        CUBIC
+        CUBIC,
+        LINEAR
     };
 
     /**

@@ -20,8 +20,8 @@ void FractalNoise::setInterpolationFunc(Interpolation interpolation)
 float FractalNoise::noise(float fx, float fy)
 {
     //top left apex of square
-    int left = static_cast<int>(floor(fx));
-    int top = static_cast<int>(floor(fy));
+    float left = floor(fx);
+    float top = floor(fy);
 
     // local dot coordinates inside of square
     float pointInQuadX = fx - left;
@@ -57,9 +57,11 @@ float FractalNoise::noise(float fx, float fy)
         pointInQuadX = cubic(pointInQuadX);
         pointInQuadY = cubic(pointInQuadY);
         break;
+      case Interpolation::LINEAR:
+        break;
     }
 
-    //innterpolation
+    //interpolation
     float tx = lerp(tx1, tx2, pointInQuadX);
     float bx = lerp(bx1, bx2, pointInQuadX);
     float tb = lerp(tx, bx, pointInQuadY);
@@ -73,7 +75,7 @@ float FractalNoise::multiOctaveNoise(float fx, float fy, int octaves, float pers
     float max = 0;
     float result = 0;
 
-    while (octaves -- > 0) {
+    while (octaves-- > 0) {
         max += amplitude;
         result += noise(fx, fy) * amplitude;
                 amplitude *= persistence;

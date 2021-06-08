@@ -28,11 +28,11 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_pressed();
-
     void on_setOctavesBtn_clicked();
 
     void on_comboBox_activated(const QString &arg1);
+
+    void on_squarePxSize_valueChanged(int arg1);
 
 private:
     void fillSqr();
@@ -42,8 +42,9 @@ private:
 
     int m_octavesCount;
 
+    int m_sqrSize;
+
     Ui::MainWindow *ui;
     QGraphicsScene *m_scene;
-    QTimer *m_timer;
 };
 #endif // MAINWINDOW_H
